@@ -82,6 +82,12 @@ describe("PrimaryButton", () => {
       expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
     });
 
+    it("does not set aria-busy when not loading", () => {
+      renderButton({ label: "Button" });
+      // aria-busy must be absent (not "false") so screen readers don't announce a busy state
+      expect(screen.getByRole("button")).not.toHaveAttribute("aria-busy");
+    });
+
     it("does not fire onClick while loading", async () => {
       const onClick = vi.fn();
       renderButton({ label: "Saving…", loading: true, onClick });
@@ -138,6 +144,18 @@ describe("PrimaryButton", () => {
       screen.getByRole("button").focus();
       await user.keyboard(" ");
       expect(onClick).toHaveBeenCalledOnce();
+    });
+
+    it("receives focus via Tab", async () => {
+      renderButton({ label: "Button" });
+      await user.tab();
+      expect(screen.getByRole("button")).toHaveFocus();
+    });
+
+    it("is skipped by Tab when disabled", async () => {
+      renderButton({ label: "Button", disabled: true });
+      await user.tab();
+      expect(screen.getByRole("button")).not.toHaveFocus();
     });
   });
 });

@@ -80,6 +80,17 @@ describe("TextFieldWithLabel", () => {
       renderField({ error: true });
       expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-describedby");
     });
+
+    it("sets aria-describedby even without error when helperText is present", () => {
+      // Informational helper text (not an error) must still be announced by screen readers
+      renderField({ helperText: "We'll never share your email" });
+      const input = screen.getByRole("textbox");
+      const describedById = input.getAttribute("aria-describedby");
+      expect(describedById).toBeTruthy();
+      expect(document.getElementById(describedById!)).toHaveTextContent(
+        "We'll never share your email",
+      );
+    });
   });
 
   describe("disabled state", () => {
@@ -122,6 +133,18 @@ describe("TextFieldWithLabel", () => {
       await user.clear(input);
       await user.type(input, "new");
       expect(input).toHaveValue("new");
+    });
+
+    it("receives focus via Tab", async () => {
+      renderField();
+      await user.tab();
+      expect(screen.getByRole("textbox")).toHaveFocus();
+    });
+
+    it("is skipped by Tab when disabled", async () => {
+      renderField({ disabled: true });
+      await user.tab();
+      expect(screen.getByRole("textbox")).not.toHaveFocus();
     });
   });
 
