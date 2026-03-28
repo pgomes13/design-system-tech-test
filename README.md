@@ -38,7 +38,69 @@ Feel free to leverage any AI tools for this assessment, all we ask is for you to
 
 **AI Tools Used**:
 
-- Tool A: How it was used
+- **Claude Code (Anthropic)**: Used throughout the entire implementation. Specifically used for:
+  - Initial codebase analysis and planning (plan mode)
+  - Scaffolding components, stories, and build config
+  - Configuring the Vite library build pipeline and TypeScript declarations
+  - Writing GitHub Actions CI and Storybook deploy workflows
+  - Setting up Playwright e2e tests for accessibility assertions
+  - Creating custom slash commands (`/add-component`, `/update-tokens`, `/check-a11y`) for future development automation
+  - Writing `CLAUDE.md` project context so future AI sessions have full awareness of conventions
+
+## Installation
+
+Once published to an NPM registry, install the package and its peer dependencies:
+
+```bash
+npm install design-system-tech-test
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+Wrap your app with MUI's `ThemeProvider` using the exported themes:
+
+```tsx
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { lightTheme } from "design-system-tech-test/theme";
+
+export default function App() {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+      {/* your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+Then import components:
+
+```tsx
+import { PrimaryButton, TextFieldWithLabel } from "design-system-tech-test";
+
+<PrimaryButton variant="contained" onClick={handleSubmit}>
+  Save changes
+</PrimaryButton>
+
+<TextFieldWithLabel
+  label="Email address"
+  placeholder="you@example.com"
+  error={hasError}
+  helperText={hasError ? "Please enter a valid email" : undefined}
+/>
+```
+
+## Storybook
+
+Live documentation: _(deploy link will appear here after first GitHub Pages deploy)_
+
+To run locally:
+
+```bash
+npm install
+npm run dev
+```
+
+Then open [localhost:3000](http://localhost:3000).
 
 ## What are we looking for?
 
