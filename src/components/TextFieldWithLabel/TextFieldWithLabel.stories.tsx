@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TextFieldWithLabel } from "./TextFieldWithLabel";
 
 const meta = {
-  title: "Components/TextFieldWithLabel",
+  title: "Molecules/TextFieldWithLabel",
   component: TextFieldWithLabel,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

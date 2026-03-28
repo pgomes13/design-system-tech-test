@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("PrimaryButton", () => {
   test("contained variant renders and is enabled", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--contained-default&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--contained-default&viewMode=story",
     );
     const button = page.getByRole("button", { name: "Button" });
     await expect(button).toBeVisible();
@@ -12,7 +12,7 @@ test.describe("PrimaryButton", () => {
 
   test("outlined variant renders and is enabled", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--outlined-default&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--outlined-default&viewMode=story",
     );
     const button = page.getByRole("button", { name: "Button" });
     await expect(button).toBeVisible();
@@ -21,7 +21,7 @@ test.describe("PrimaryButton", () => {
 
   test("disabled variant is not interactive", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--contained-disabled&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--contained-disabled&viewMode=story",
     );
     const button = page.getByRole("button", { name: "Button" });
     await expect(button).toBeVisible();
@@ -30,7 +30,7 @@ test.describe("PrimaryButton", () => {
 
   test("loading variant shows spinner and is disabled", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--contained-loading&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--contained-loading&viewMode=story",
     );
     const button = page.getByRole("button", { name: /Saving/ });
     await expect(button).toBeDisabled();
@@ -40,7 +40,7 @@ test.describe("PrimaryButton", () => {
 
   test("focus ring is visible on keyboard focus", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--contained-default&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--contained-default&viewMode=story",
     );
     await page.keyboard.press("Tab");
     const button = page.getByRole("button", { name: "Button" });
@@ -53,7 +53,7 @@ test.describe("PrimaryButton", () => {
 
   test("label prop renders as button text", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-primarybutton--contained-default&viewMode=story",
+      "/iframe.html?id=atoms-primarybutton--contained-default&viewMode=story",
     );
     await expect(page.getByRole("button", { name: "Button" })).toBeVisible();
   });
@@ -62,7 +62,7 @@ test.describe("PrimaryButton", () => {
 test.describe("TextFieldWithLabel", () => {
   test("label is associated with input via htmlFor", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--empty&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--empty&viewMode=story",
     );
     const input = page.getByRole("textbox");
     const inputId = await input.getAttribute("id");
@@ -74,21 +74,21 @@ test.describe("TextFieldWithLabel", () => {
 
   test("placeholder variant shows placeholder text", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--with-placeholder&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--with-placeholder&viewMode=story",
     );
     await expect(page.getByPlaceholder("you@example.com")).toBeVisible();
   });
 
   test("filled variant shows pre-filled value", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--filled&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--filled&viewMode=story",
     );
     await expect(page.getByRole("textbox")).toHaveValue("user@company.com");
   });
 
   test("error state has aria-invalid on the input", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--error-state&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--error-state&viewMode=story",
     );
     await expect(page.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
@@ -97,7 +97,7 @@ test.describe("TextFieldWithLabel", () => {
     page,
   }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--error-state&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--error-state&viewMode=story",
     );
     const input = page.getByRole("textbox");
     const describedById = await input.getAttribute("aria-describedby");
@@ -107,14 +107,14 @@ test.describe("TextFieldWithLabel", () => {
 
   test("disabled state disables the input", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--disabled&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--disabled&viewMode=story",
     );
     await expect(page.getByRole("textbox")).toBeDisabled();
   });
 
   test("focused state applies focus ring", async ({ page }) => {
     await page.goto(
-      "/iframe.html?id=components-textfieldwithlabel--empty&viewMode=story",
+      "/iframe.html?id=molecules-textfieldwithlabel--empty&viewMode=story",
     );
     await page.getByRole("textbox").click();
     const outlineWidth = await page.getByRole("textbox").evaluate(

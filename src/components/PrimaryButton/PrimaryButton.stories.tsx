@@ -3,7 +3,7 @@ import { fn } from "storybook/test";
 import { PrimaryButton } from "./PrimaryButton";
 
 const meta = {
-  title: "Components/PrimaryButton",
+  title: "Atoms/PrimaryButton",
   component: PrimaryButton,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
