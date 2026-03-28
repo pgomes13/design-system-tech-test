@@ -76,10 +76,6 @@ const buildTheme = (mode: "light" | "dark"): Theme =>
               borderColor: theme.palette.primary.main,
               borderWidth: 2,
             },
-            "&.Mui-focused": {
-              outline: `${sharedTokens.focusRingWidth}px solid ${theme.palette.primary.main}`,
-              outlineOffset: sharedTokens.focusRingOffset,
-            },
             "&.Mui-error": {
               backgroundColor: alpha(theme.palette.error.main, 0.05),
             },

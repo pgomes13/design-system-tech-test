@@ -150,14 +150,9 @@ const OVERVIEW_ROWS: Array<{ label: string; placeholder?: string; defaultValue?:
 ];
 
 const focusSx = {
-  "& .MuiOutlinedInput-root": {
-    outline: "3px solid",
-    outlineColor: "primary.main",
-    outlineOffset: "2px",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "primary.main",
-      borderWidth: "2px",
-    },
+  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    borderColor: "primary.main",
+    borderWidth: "2px",
   },
 } as const;
 
