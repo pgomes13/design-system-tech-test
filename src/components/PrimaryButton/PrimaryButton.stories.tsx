@@ -56,3 +56,13 @@ export const OutlinedDisabled: Story = {
   name: "Outlined — Disabled",
   args: { variant: "outlined", disabled: true },
 };
+
+export const ContainedLoading: Story = {
+  name: "Contained — Loading",
+  args: { variant: "contained", loading: true, label: "Saving…" },
+};
+
+export const OutlinedLoading: Story = {
+  name: "Outlined — Loading",
+  args: { variant: "outlined", loading: true, label: "Saving…" },
+};
