@@ -16,17 +16,31 @@ This starter repository contains a working **Storybook configuration** so you ca
 ## Getting Started
 
 ```bash
-# Install dependencies using your preferred package manager
-npm install
-pnpm install
-yarn install
-bun install
+# Install dependencies
+make install
 
-# Run the dev server
-npm run dev
+# Start Storybook dev server
+make dev
 ```
 
 Then open your browser to [localhost:3000](http://localhost:3000).
+
+## Commands
+
+Run `make help` to see all available commands:
+
+| Command | Description |
+|---------|-------------|
+| `make install` | Install all dependencies |
+| `make dev` | Start Storybook at localhost:3000 |
+| `make build` | Compile library to `dist/` (ESM + `.d.ts`) |
+| `make build-storybook` | Build static Storybook to `storybook-static/` |
+| `make lint` | Run ESLint |
+| `make format` | Format all files with Prettier |
+| `make typecheck` | Type-check the library build |
+| `make test` | Run Playwright e2e tests (requires dev server running) |
+| `make test-ci` | Run Playwright e2e tests with GitHub Actions reporter |
+| `make check` | Run lint + typecheck + build (mirrors CI) |
 
 ## Expected Time
 
