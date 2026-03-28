@@ -105,7 +105,7 @@ import { PrimaryButton, TextFieldWithLabel } from "design-system-tech-test";
 
 ## Storybook
 
-Live documentation: _(deploy link will appear here after first GitHub Pages deploy)_
+Live documentation: https://pgomes13.github.io/design-system-tech-test/
 
 To run locally:
 
