@@ -1,4 +1,5 @@
 import "@fontsource/inter";
+import { forwardRef } from "react";
 import {
   Button as MuiButton,
   CircularProgress,
@@ -17,7 +18,14 @@ import {
  * WCAG 2.4.11 Focus Appearance.
  *
  * When `loading` is `true` the button is automatically disabled and shows a
- * spinner, preventing double-submission while communicating progress to the user.
+ * spinner in place of any `startIcon`, preventing double-submission while
+ * communicating progress to the user.
+ *
+ * Supports `ref` forwarding for programmatic focus management (e.g. returning
+ * focus to a trigger after closing a dialog).
+ *
+ * All other MUI `Button` props (`size`, `startIcon`, `endIcon`, `sx`, `href`,
+ * etc.) are forwarded to the underlying element.
  *
  * @example Contained (default)
  * ```tsx
@@ -38,11 +46,11 @@ import {
  * </PrimaryButton>
  * ```
  *
- * @example Disabled state
+ * @example Programmatic focus via ref
  * ```tsx
- * <PrimaryButton variant="contained" disabled>
- *   Unavailable
- * </PrimaryButton>
+ * const ref = useRef<HTMLButtonElement>(null);
+ * useEffect(() => { ref.current?.focus(); }, []);
+ * <PrimaryButton ref={ref}>Focus me</PrimaryButton>
  * ```
  */
 export interface PrimaryButtonProps extends Omit<MuiButtonProps, "variant"> {
@@ -61,37 +69,45 @@ export interface PrimaryButtonProps extends Omit<MuiButtonProps, "variant"> {
   label?: string;
   /**
    * When `true`, displays a spinner and disables the button to prevent
-   * double-submission. Use during async operations (form submit, API calls).
+   * double-submission. Overrides `startIcon` while active.
+   * Use during async operations (form submit, API calls).
    * @defaultValue false
    */
   loading?: boolean;
 }
 
-export const PrimaryButton = ({
-  variant = "contained",
-  label,
-  children,
-  loading = false,
-  disabled,
-  ...rest
-}: PrimaryButtonProps) => (
-  <MuiButton
-    variant={variant}
-    color="primary"
-    disableElevation
-    disabled={disabled || loading}
-    aria-busy={loading || undefined}
-    startIcon={
-      loading ? (
-        <CircularProgress
-          size={16}
-          color="inherit"
-          aria-hidden="true"
-        />
-      ) : undefined
-    }
-    {...rest}
-  >
-    {label ?? children}
-  </MuiButton>
+export const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
+  (
+    {
+      variant = "contained",
+      label,
+      children,
+      loading = false,
+      disabled,
+      startIcon,
+      ...rest
+    },
+    ref,
+  ) => (
+    <MuiButton
+      ref={ref}
+      variant={variant}
+      color="primary"
+      disableElevation
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      startIcon={
+        loading ? (
+          <CircularProgress size={16} color="inherit" aria-hidden="true" />
+        ) : (
+          startIcon
+        )
+      }
+      {...rest}
+    >
+      {label ?? children}
+    </MuiButton>
+  ),
 );
+
+PrimaryButton.displayName = "PrimaryButton";

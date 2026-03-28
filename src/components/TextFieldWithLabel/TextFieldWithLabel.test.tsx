@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "@mui/material";
@@ -121,6 +122,25 @@ describe("TextFieldWithLabel", () => {
       await user.clear(input);
       await user.type(input, "new");
       expect(input).toHaveValue("new");
+    });
+  });
+
+  describe("reusability", () => {
+    it("forwards ref to the underlying input element", () => {
+      const ref = createRef<HTMLInputElement>();
+      render(
+        <ThemeProvider theme={lightTheme}>
+          <TextFieldWithLabel label="Email" ref={ref} />
+        </ThemeProvider>,
+      );
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      expect(ref.current).toBe(screen.getByRole("textbox"));
+    });
+
+    it("expands to full width when fullWidth is true", () => {
+      const { container } = renderField({ fullWidth: true });
+      const wrapper = container.firstChild as HTMLElement;
+      expect(wrapper).toHaveStyle({ width: "100%" });
     });
   });
 });

@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "@mui/material";
@@ -86,6 +87,32 @@ describe("PrimaryButton", () => {
       renderButton({ label: "Saving…", loading: true, onClick });
       await user.click(screen.getByRole("button"));
       expect(onClick).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("reusability", () => {
+    it("forwards ref to the underlying button element", () => {
+      const ref = createRef<HTMLButtonElement>();
+      render(
+        <ThemeProvider theme={lightTheme}>
+          <PrimaryButton ref={ref} label="Button" />
+        </ThemeProvider>,
+      );
+      expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+      expect(ref.current).toBe(screen.getByRole("button"));
+    });
+
+    it("passes startIcon through when not loading", () => {
+      const icon = <span data-testid="icon">★</span>;
+      renderButton({ label: "Button", startIcon: icon });
+      expect(screen.getByTestId("icon")).toBeInTheDocument();
+    });
+
+    it("overrides startIcon with spinner when loading", () => {
+      const icon = <span data-testid="icon">★</span>;
+      renderButton({ label: "Saving…", loading: true, startIcon: icon });
+      expect(screen.queryByTestId("icon")).not.toBeInTheDocument();
+      expect(screen.getByRole("progressbar", { hidden: true })).toBeInTheDocument();
     });
   });
 
