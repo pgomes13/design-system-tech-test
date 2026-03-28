@@ -10,7 +10,6 @@ export const sharedTokens = {
     input: 6,
   },
   focusRingWidth: 3,
-  focusRingOffset: 0,
 } as const;
 
 const buildTheme = (mode: "light" | "dark"): Theme =>
@@ -61,8 +60,8 @@ const buildTheme = (mode: "light" | "dark"): Theme =>
             return {
               borderRadius: sharedTokens.borderRadius.button,
               "&.Mui-focusVisible": {
-                outline: `${sharedTokens.focusRingWidth}px solid ${palette.main}`,
-                outlineOffset: sharedTokens.focusRingOffset,
+                outline: "none",
+                boxShadow: `0 0 0 2px ${theme.palette.background.default}, 0 0 0 ${2 + sharedTokens.focusRingWidth}px ${palette.main}`,
               },
             };
           },

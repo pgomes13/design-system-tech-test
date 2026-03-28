@@ -17,9 +17,6 @@ describe("sharedTokens", () => {
     expect(sharedTokens.focusRingWidth).toBe(3);
   });
 
-  it("has focusRingOffset = 0", () => {
-    expect(sharedTokens.focusRingOffset).toBe(0);
-  });
 });
 
 describe("lightTheme", () => {
