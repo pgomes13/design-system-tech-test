@@ -27,12 +27,16 @@ describe("lightTheme", () => {
     expect(lightTheme.palette.mode).toBe("light");
   });
 
-  it("has primary.main = #1A56DB", () => {
-    expect(lightTheme.palette.primary.main).toBe("#1A56DB");
+  it("has primary.main = #078480", () => {
+    expect(lightTheme.palette.primary.main).toBe("#078480");
   });
 
-  it("has error.main = #E02424", () => {
-    expect(lightTheme.palette.error.main).toBe("#E02424");
+  it("has secondary.main = #505558", () => {
+    expect(lightTheme.palette.secondary.main).toBe("#505558");
+  });
+
+  it("has error.main = #D63443", () => {
+    expect(lightTheme.palette.error.main).toBe("#D63443");
   });
 
   it("has background.default = #FFFFFF", () => {
@@ -49,12 +53,16 @@ describe("darkTheme", () => {
     expect(darkTheme.palette.mode).toBe("dark");
   });
 
-  it("has primary.main = #5C93FF", () => {
-    expect(darkTheme.palette.primary.main).toBe("#5C93FF");
+  it("has primary.main = #70D2C8", () => {
+    expect(darkTheme.palette.primary.main).toBe("#70D2C8");
   });
 
-  it("has error.main = #F87171", () => {
-    expect(darkTheme.palette.error.main).toBe("#F87171");
+  it("has secondary.main = #EDEEFC", () => {
+    expect(darkTheme.palette.secondary.main).toBe("#EDEEFC");
+  });
+
+  it("has error.main = #F28F99", () => {
+    expect(darkTheme.palette.error.main).toBe("#F28F99");
   });
 
   it("has background.default = #1F2937", () => {

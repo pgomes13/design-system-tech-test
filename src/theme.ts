@@ -18,11 +18,15 @@ const buildTheme = (mode: "light" | "dark"): Theme =>
     palette: {
       mode,
       primary: {
-        main: mode === "light" ? "#1A56DB" : "#5C93FF",
+        main: mode === "light" ? "#078480" : "#70D2C8",
+        contrastText: "#FFFFFF",
+      },
+      secondary: {
+        main: mode === "light" ? "#505558" : "#EDEEFC",
         contrastText: "#FFFFFF",
       },
       error: {
-        main: mode === "light" ? "#E02424" : "#F87171",
+        main: mode === "light" ? "#D63443" : "#F28F99",
       },
       text: {
         primary: mode === "light" ? "#111928" : "#F9FAFB",
@@ -47,13 +51,21 @@ const buildTheme = (mode: "light" | "dark"): Theme =>
     components: {
       MuiButton: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            borderRadius: sharedTokens.borderRadius.button,
-            "&.Mui-focusVisible": {
-              outline: `${sharedTokens.focusRingWidth}px solid ${theme.palette.primary.main}`,
-              outlineOffset: sharedTokens.focusRingOffset,
-            },
-          }),
+          root: ({ theme, ownerState }) => {
+            const colorKey = (ownerState.color ?? "primary") as
+              | "primary"
+              | "secondary"
+              | "error";
+            const palette =
+              theme.palette[colorKey] ?? theme.palette.primary;
+            return {
+              borderRadius: sharedTokens.borderRadius.button,
+              "&.Mui-focusVisible": {
+                outline: `${sharedTokens.focusRingWidth}px solid ${palette.main}`,
+                outlineOffset: sharedTokens.focusRingOffset,
+              },
+            };
+          },
         },
       },
       MuiOutlinedInput: {

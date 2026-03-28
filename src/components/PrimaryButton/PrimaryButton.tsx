@@ -92,7 +92,6 @@ export const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
     <MuiButton
       ref={ref}
       variant={variant}
-      color="primary"
       disableElevation
       disabled={disabled || loading}
       aria-busy={loading || undefined}
