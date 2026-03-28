@@ -3,3 +3,5 @@ export type { PrimaryButtonProps } from "./components/PrimaryButton";
 
 export { TextFieldWithLabel } from "./components/TextFieldWithLabel";
 export type { TextFieldWithLabelProps } from "./components/TextFieldWithLabel";
+
+export { lightTheme, darkTheme, sharedTokens } from "./theme";

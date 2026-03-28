@@ -74,7 +74,7 @@ Wrap your app with MUI's `ThemeProvider` using the exported themes:
 
 ```tsx
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { lightTheme } from "design-system-tech-test/theme";
+import { lightTheme } from "design-system-tech-test";
 
 export default function App() {
   return (
