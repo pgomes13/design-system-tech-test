@@ -1,52 +1,16 @@
 import { alpha, createTheme, type Theme } from "@mui/material/styles";
+import { sharedTokens } from "./tokens";
+import { buildPalette } from "./palette";
+import { shape } from "./shape";
+import { typography } from "./typography";
 
-/**
- * Shared design tokens used by both light and dark themes.
- * Reference these values in component overrides to maintain a single source of truth.
- */
-export const sharedTokens = {
-  borderRadius: {
-    button: 8,
-    input: 6,
-  },
-  focusRingWidth: 3,
-} as const;
+export { sharedTokens } from "./tokens";
 
 const buildTheme = (mode: "light" | "dark"): Theme =>
   createTheme({
-    palette: {
-      mode,
-      primary: {
-        main: mode === "light" ? "#078480" : "#70D2C8",
-        contrastText: "#FFFFFF",
-      },
-      secondary: {
-        main: mode === "light" ? "#505558" : "#EDEEFC",
-        contrastText: "#FFFFFF",
-      },
-      error: {
-        main: mode === "light" ? "#D63443" : "#F28F99",
-      },
-      text: {
-        primary: mode === "light" ? "#111928" : "#F9FAFB",
-        secondary: mode === "light" ? "#6B7280" : "#9CA3AF",
-        disabled: mode === "light" ? "#9CA3AF" : "#4B5563",
-      },
-      background: {
-        default: mode === "light" ? "#FFFFFF" : "#1F2937",
-        paper: mode === "light" ? "#F9FAFB" : "#111827",
-      },
-    },
-    shape: {
-      borderRadius: sharedTokens.borderRadius.button,
-    },
-    typography: {
-      fontFamily: '"Inter", sans-serif',
-      button: {
-        textTransform: "none",
-        fontWeight: 600,
-      },
-    },
+    palette: buildPalette(mode),
+    shape,
+    typography,
     components: {
       MuiButton: {
         styleOverrides: {
