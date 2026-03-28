@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/test";
 import { TextFieldWithLabel } from "./TextFieldWithLabel";
 
 const meta = {
@@ -48,7 +49,10 @@ export const Hovered: Story = {
 export const Focused: Story = {
   name: "Focused",
   args: { placeholder: "you@example.com" },
-  parameters: { pseudo: { focus: true, focusVisible: true } },
+  play: async ({ canvasElement }) => {
+    within(canvasElement);
+    await userEvent.tab();
+  },
 };
 
 export const ErrorState: Story = {

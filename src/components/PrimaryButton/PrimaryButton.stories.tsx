@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { fn, userEvent, within } from "storybook/test";
 import { PrimaryButton } from "./PrimaryButton";
 
 const meta = {
@@ -27,7 +27,10 @@ export const ContainedHover: Story = {
 export const ContainedFocus: Story = {
   name: "Contained — Focus (keyboard)",
   args: { variant: "contained" },
-  parameters: { pseudo: { focusVisible: true } },
+  play: async ({ canvasElement }) => {
+    within(canvasElement);
+    await userEvent.tab();
+  },
 };
 
 export const ContainedDisabled: Story = {
@@ -49,7 +52,10 @@ export const OutlinedHover: Story = {
 export const OutlinedFocus: Story = {
   name: "Outlined — Focus (keyboard)",
   args: { variant: "outlined" },
-  parameters: { pseudo: { focusVisible: true } },
+  play: async ({ canvasElement }) => {
+    within(canvasElement);
+    await userEvent.tab();
+  },
 };
 
 export const OutlinedDisabled: Story = {
