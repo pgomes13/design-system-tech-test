@@ -10,7 +10,7 @@ export const sharedTokens = {
     input: 6,
   },
   focusRingWidth: 3,
-  focusRingOffset: 2,
+  focusRingOffset: 0,
 } as const;
 
 const buildTheme = (mode: "light" | "dark"): Theme =>
