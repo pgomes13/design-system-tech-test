@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 
@@ -15,6 +15,17 @@ export default defineConfig({
     }),
   ],
   publicDir: false,
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./src/test/setup.ts"],
+    exclude: ["e2e/**", "node_modules/**"],
+    coverage: {
+      provider: "v8",
+      include: ["src/components/**", "src/theme.ts"],
+      exclude: ["**/*.stories.*"],
+    },
+  },
   build: {
     lib: {
       entry: "src/index.ts",

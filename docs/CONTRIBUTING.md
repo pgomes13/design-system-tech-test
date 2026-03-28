@@ -18,9 +18,12 @@ make dev       # Start Storybook at localhost:3000
 | `make lint` | Run ESLint |
 | `make format` | Format all files with Prettier |
 | `make typecheck` | Type-check the library build |
-| `make test` | Run Playwright e2e tests (requires dev server running) |
-| `make test-ci` | Run Playwright e2e tests with GitHub Actions reporter |
-| `make check` | Run lint + typecheck + build (mirrors CI) |
+| `make test` | Run Vitest unit tests |
+| `make test-watch` | Run Vitest in watch mode |
+| `make test-coverage` | Run unit tests with coverage report |
+| `make test-e2e` | Run Playwright e2e tests (requires dev server running) |
+| `make test-e2e-ci` | Run Playwright e2e tests with GitHub Actions reporter |
+| `make check` | Run lint + typecheck + unit tests + build (mirrors CI) |
 
 Run `make help` to see all commands with descriptions.
 

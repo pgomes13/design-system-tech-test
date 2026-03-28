@@ -1,4 +1,4 @@
-.PHONY: install dev build build-storybook lint format typecheck test test-ci check help
+.PHONY: install dev build build-storybook lint format typecheck test test-watch test-coverage test-e2e test-e2e-ci check help
 
 # ─── Setup ────────────────────────────────────────────────────────────────────
 
@@ -31,15 +31,24 @@ typecheck: ## Type-check the library build (no emit)
 
 # ─── Testing ──────────────────────────────────────────────────────────────────
 
-test: ## Run Playwright e2e tests (requires Storybook running on :3000)
+test: ## Run Vitest unit tests
+	npm test
+
+test-watch: ## Run Vitest in watch mode
+	npm run test:watch
+
+test-coverage: ## Run unit tests with coverage report
+	npm run test:coverage
+
+test-e2e: ## Run Playwright e2e tests (requires Storybook running on :3000)
 	npm run test:e2e
 
-test-ci: ## Run Playwright e2e tests with GitHub Actions reporter
+test-e2e-ci: ## Run Playwright e2e tests with GitHub Actions reporter
 	npm run test:e2e:ci
 
 # ─── Combined ─────────────────────────────────────────────────────────────────
 
-check: lint typecheck build ## Run lint + typecheck + build (mirrors CI)
+check: lint typecheck test build ## Run lint + typecheck + unit tests + build (mirrors CI)
 
 # ─── Help ─────────────────────────────────────────────────────────────────────
 

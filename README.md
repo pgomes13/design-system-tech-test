@@ -31,5 +31,6 @@ make dev       # Start Storybook at localhost:3000
 - React 19, MUI 7, TypeScript (strict)
 - Vite 7 — library build to ESM + `.d.ts`
 - Storybook 9 — component documentation
+- Vitest + React Testing Library — unit tests
 - Playwright — e2e accessibility tests
 - GitHub Actions — CI + Pages deploy
