@@ -1,4 +1,4 @@
-import { createTheme, type Theme } from "@mui/material/styles";
+import { alpha, createTheme, type Theme } from "@mui/material/styles";
 
 /**
  * Shared design tokens used by both light and dark themes.
@@ -80,7 +80,14 @@ const buildTheme = (mode: "light" | "dark"): Theme =>
               outline: `${sharedTokens.focusRingWidth}px solid ${theme.palette.primary.main}`,
               outlineOffset: sharedTokens.focusRingOffset,
             },
+            "&.Mui-error": {
+              backgroundColor: alpha(theme.palette.error.main, 0.05),
+            },
           }),
+          inputSizeSmall: {
+            paddingTop: 7,
+            paddingBottom: 7,
+          },
         },
       },
     },

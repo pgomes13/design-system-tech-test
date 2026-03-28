@@ -176,3 +176,75 @@ export const ErrorOutlinedDisabled: Story = {
   name: "Error Outlined — Disabled",
   args: { variant: "outlined", color: "error", disabled: true },
 };
+
+// ── Grid overview (matches Figma layout) ──────────────────────────────────────
+
+const COLUMNS = [
+  { label: "Primary Color", color: "primary" as const },
+  { label: "Secondary Color", color: "secondary" as const },
+  { label: "Error Color", color: "error" as const },
+];
+
+const STATES = ["Default", "Hover", "Focus", "Disabled"] as const;
+const VARIANTS = ["contained", "outlined"] as const;
+
+export const Overview: Story = {
+  name: "Overview — All Variants & States",
+  parameters: {
+    layout: "centered",
+    controls: { disable: true },
+    pseudo: { hover: [".is-hover"] },
+  },
+  render: () => (
+    <div style={{ padding: 32, fontFamily: "Inter, sans-serif" }}>
+      <p style={{ textAlign: "center", fontWeight: 600, fontSize: 16, margin: "0 0 24px" }}>
+        Medium size
+      </p>
+
+      {/* Column headers */}
+      <div style={{ display: "grid", gridTemplateColumns: "110px 100px repeat(3, 120px)", gap: 8, marginBottom: 8 }}>
+        <div />
+        <div />
+        {COLUMNS.map((c) => (
+          <div key={c.label} style={{ textAlign: "center", fontSize: 12, fontWeight: 600 }}>
+            {c.label}
+          </div>
+        ))}
+      </div>
+
+      {VARIANTS.map((variant) => (
+        <div key={variant} style={{ display: "flex", marginBottom: 16 }}>
+          {/* Variant label */}
+          <div style={{ width: 110, display: "flex", alignItems: "center", fontWeight: 700, fontSize: 14 }}>
+            {variant === "contained" ? "Contained" : "Outlined"}
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {STATES.map((state) => (
+              <div key={state} style={{ display: "grid", gridTemplateColumns: "100px repeat(3, 120px)", gap: 8, alignItems: "center" }}>
+                <div style={{ fontSize: 13 }}>{state}</div>
+                {COLUMNS.map((col) => (
+                  <div key={col.color} style={{ display: "flex", justifyContent: "center" }}>
+                    <PrimaryButton
+                      variant={variant}
+                      color={col.color}
+                      label="Label"
+                      disabled={state === "Disabled"}
+                      className={
+                        state === "Hover"
+                          ? "is-hover"
+                          : state === "Focus"
+                            ? "Mui-focusVisible"
+                            : undefined
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  ),
+};
