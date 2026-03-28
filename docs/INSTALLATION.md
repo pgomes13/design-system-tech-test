@@ -50,6 +50,11 @@ import { PrimaryButton } from "design-system-tech-test";
   Cancel
 </PrimaryButton>
 
+// Loading — prevents double-submission during async operations
+<PrimaryButton variant="contained" loading onClick={handleSubmit}>
+  Saving…
+</PrimaryButton>
+
 // Disabled
 <PrimaryButton variant="contained" disabled>
   Unavailable

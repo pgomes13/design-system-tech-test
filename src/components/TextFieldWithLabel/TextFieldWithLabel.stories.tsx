@@ -31,7 +31,12 @@ export const WithPlaceholder: Story = {
 
 export const Filled: Story = {
   name: "Filled",
-  args: { value: "user@company.com" },
+  args: { defaultValue: "user@company.com" },
+};
+
+export const WithHelperText: Story = {
+  name: "Helper Text",
+  args: { helperText: "We'll never share your email with anyone." },
 };
 
 export const Hovered: Story = {
