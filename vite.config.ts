@@ -14,6 +14,7 @@ export default defineConfig({
       exclude: ["**/*.stories.{ts,tsx}"],
     }),
   ],
+  publicDir: false,
   build: {
     lib: {
       entry: "src/index.ts",

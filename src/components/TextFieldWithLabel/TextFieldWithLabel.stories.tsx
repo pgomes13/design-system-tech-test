@@ -34,6 +34,12 @@ export const Filled: Story = {
   args: { value: "user@company.com" },
 };
 
+export const Hovered: Story = {
+  name: "Hover",
+  args: { placeholder: "you@example.com" },
+  parameters: { pseudo: { hover: true } },
+};
+
 export const Focused: Story = {
   name: "Focused",
   args: { placeholder: "you@example.com" },
